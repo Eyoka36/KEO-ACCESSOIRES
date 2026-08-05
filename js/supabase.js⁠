@@ -1,0 +1,135 @@
+// =====================================
+// CONNEXION SUPABASE - KEO ACCESSOIRES
+// =====================================
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const SUPABASE_URL = "https://tjlmqgwnacoupsijamfd.supabase.co";
+const SUPABASE_KEY = "sb_publishable_StW5cna9zvVnAHhLLIMIMg_nNbI4IMy";
+
+export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// =====================================
+// LECTURE (PRODUITS & AVIS)
+// =====================================
+
+export async function getProduits() {
+    const { data, error } = await supabase
+        .from("produits")
+        .select("*")
+        .order("id", { ascending: false });
+
+    if (error) {
+        console.error("Erreur produits :", error);
+        return [];
+    }
+    return data;
+}
+
+export async function getAvis() {
+    const { data, error } = await supabase
+        .from("avis")
+        .select("*")
+        .order("date", { ascending: false });
+
+    if (error) {
+        console.error("Erreur avis :", error);
+        return [];
+    }
+    return data;
+}
+
+// =====================================
+// ADMINISTRATION & STORAGE (IMAGES, AJOUT, SUPPRESSION)
+// =====================================
+
+// Téléverser un fichier image dans Supabase Storage
+export async function uploaderImage(file) {
+    const fileName = `${Date.now()}_${file.name}`;
+    
+    // Téléversement dans le bucket "produits"
+    const { data, error } = await supabase.storage
+        .from("produits")
+        .upload(fileName, file);
+
+    if (error) {
+        console.error("Erreur d'upload d'image :", error);
+        return null;
+    }
+
+    // Récupération de l'URL publique accessible sur le site
+    const { data: publicUrlData } = supabase.storage
+        .from("produits")
+        .getPublicUrl(fileName);
+
+    return publicUrlData.publicUrl;
+}
+
+// Ajouter un bijou dans la base
+export async function ajouterProduit(produit) {
+    const { data, error } = await supabase
+        .from("produits")
+        .insert([produit]);
+
+    if (error) {
+        console.error("Erreur lors de l'ajout du produit :", error);
+        return false;
+    }
+    return true;
+}
+
+// Supprimer un bijou de la base
+export async function supprimerProduit(id) {
+    const { error } = await supabase
+        .from("produits")
+        .delete()
+        .eq("id", id);
+
+    if (error) {
+        console.error("Erreur lors de la suppression :", error);
+        return false;
+    }
+    return true;
+}
+
+// =====================================
+// LOCALSTORAGE (FAVORIS & PANIER)
+// =====================================
+
+export function ajouterFavori(produit) {
+    let favoris = JSON.parse(localStorage.getItem("keo_favoris")) || [];
+    const existe = favoris.find(item => item.id === produit.id);
+
+    if (!existe) {
+        favoris.push(produit);
+        localStorage.setItem("keo_favoris", JSON.stringify(favoris));
+    }
+}
+
+export function ajouterAuPanier(produit) {
+    let panier = JSON.parse(localStorage.getItem("keo_panier")) || [];
+    panier.push(produit);
+    localStorage.setItem("keo_panier", JSON.stringify(panier));
+}
+
+// =====================================
+// STOCK EN TEMPS RÉEL
+// =====================================
+
+export function surveillerStock(callback) {
+    supabase
+        .channel("keo-stock")
+        .on(
+            "postgres_changes",
+            {
+                event: "*",
+                schema: "public",
+                table: "produits"
+            },
+            (payload) => {
+                console.log("Modification stock :", payload);
+                callback(payload);
+            }
+        )
+        .subscribe();
+}
