@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEO Accessoires - Notre histoire</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --black: #111111;
+            --white: #ffffff;
+            --gold: #D4AF37;
+            --light-bg: #fafafa;
+            --gray: #777777;
+            --border: #eeeeee;
+            --transition: 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(--black); line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; color: inherit; }
+
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+            background: var(--white); display: flex; align-items: center; justify-content: space-between;
+            padding: 0 7%; z-index: 1000; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .logo { font-size: 26px; font-weight: 700; }
+        .logo span { color: var(--gold); }
+        nav { display: flex; gap: 30px; }
+        nav a:hover { color: var(--gold); }
+
+        .story { padding: 120px 7% 60px; min-height: 80vh; }
+        .story-content { max-width: 800px; margin: 0 auto 50px; text-align: center; }
+        .story-content h1 { font-size: 45px; margin-bottom: 10px; }
+        .story-content h2 { color: var(--gold); font-size: 24px; margin-bottom: 25px; }
+        .story-content p { font-size: 16px; line-height: 1.8; margin-bottom: 20px; color: #444; }
+
+        .story .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .story .values div { padding: 35px; background: var(--light-bg); border-radius: 20px; text-align: center; }
+        .story .values h3 { margin-bottom: 10px; font-size: 22px; }
+
+        @media (max-width: 900px) {
+            .header { padding: 0 20px; }
+            nav { display: none; }
+            .story { padding-left: 20px; padding-right: 20px; }
+            .story-content h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">KEO <span>Accessoires</span></div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="boutique.html">Boutique</a>
+            <a href="histoire.html">Notre histoire</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="story">
+        <div class="story-content">
+            <h1>Notre histoire</h1>
+            <h2>Beauté, foi et élégance aux bouts des doigts.</h2>
+            <p>KEO Accessoires est née d'une vision simple : mettre en valeur la beauté de chaque femme à travers des bijoux élégants, raffinés et accessibles.</p>
+            <p>Chaque création est pensée comme un symbole : une touche d'élégance, une expression de personnalité et un rappel de confiance en soi.</p>
+            <p>Notre mission est de proposer des accessoires qui accompagnent les moments importants de la vie : les célébrations, les rencontres et les instants du quotidien.</p>
+        </div>
+
+        <div class="values">
+            <div>
+                <h3>✨ Beauté</h3>
+                <p>Des créations qui révèlent votre style.</p>
+            </div>
+            <div>
+                <h3>🙏 Foi</h3>
+                <p>Une marque construite autour de valeurs positives.</p>
+            </div>
+            <div>
+                <h3>💎 Élégance</h3>
+                <p>Des bijoux choisis avec soin et finesse.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
