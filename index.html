@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEO Accessoires | Beauté, foi et élégance</title>
+
+    <!-- Polices -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #111111;
+            --white: #ffffff;
+            --gold: #D4AF37;
+            --light: #f7f7f7;
+            --gray: #777;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--white);
+            color: var(--black);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVIGATION */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .actions a {
+            position: relative;
+            font-size: 20px;
+        }
+
+        .actions span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--gold);
+            color: white;
+            font-size: 11px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 7% 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            width: 50%;
+            animation: fadeUp 1s;
+        }
+
+        .hero-text h1 {
+            font-size: 70px;
+        }
+
+        .hero-text h2 {
+            margin-top: 20px;
+            font-size: 32px;
+            color: var(--gold);
+        }
+
+        .hero-text p {
+            margin: 25px 0;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn, .btn-outline {
+            padding: 15px 35px;
+            border-radius: 30px;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: var(--black);
+            color: white;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--black);
+        }
+
+        .btn-outline:hover {
+            background: black;
+            color: white;
+        }
+
+        .hero-image {
+            width: 45%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        /* SECTIONS GENERALES */
+        .values, .products, .reviews {
+            padding: 80px 7%;
+        }
+
+        .values h2, .products h2, .reviews h2 {
+            text-align: center;
+            font-size: 45px;
+            margin-bottom: 50px;
+        }
+
+        /* VALEURS */
+        .value-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            padding: 35px;
+            text-align: center;
+            background: #fafafa;
+            border-radius: 20px;
+            transition: .4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .08);
+        }
+
+        .card i {
+            font-size: 35px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        /* PRODUITS */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            padding-bottom: 20px;
+            transition: .3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            padding: 10px 20px 5px;
+            font-size: 20px;
+        }
+
+        .product-card .price {
+            padding: 0 20px 15px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .product-card .card-actions {
+            display: flex;
+            gap: 10px;
+            padding: 0 20px;
+        }
+
+        .btn-fav {
+            background: #f7f7f7;
+            color: #111;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-fav:hover {
+            background: #ffe6e6;
+            border-color: red;
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            padding: 10px 20px;
+            border: none;
+            background: black;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--gold);
+        }
+
+        /* AVIS */
+        .review-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .review {
+            width: 300px;
+            padding: 30px;
+            background: #fafafa;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        /* ASSISTANT IA */
+        .ai-button {
+            position: fixed;
+            left: 25px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: black;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .ai-box {
+            display: none;
+            position: fixed;
+            left: 25px;
+            bottom: 100px;
+            width: 280px;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .2);
+            z-index: 999;
+        }
+
+        .ai-box button {
+            margin: 5px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* WHATSAPP */
+        .whatsapp {
+            position: fixed;
+            right: 25px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        footer a {
+            margin: 10px;
+            color: var(--gold);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .header { padding: 0 20px; }
+            nav { display: none; }
+            .hero { flex-direction: column; text-align: center; }
+            .hero-text, .hero-image { width: 100%; }
+            .hero-text h1 { font-size: 45px; }
+            .hero-text h2 { font-size: 25px; }
+            .hero-buttons { justify-content: center; }
+            .value-container { grid-template-columns: 1fr; }
+            .product-container { grid-template-columns: 1fr; }
+            .review-container { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="header">
+        <div class="logo">
+            KEO <span>Accessoires</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="boutique.html">Boutique</a>
+            <a href="histoire.html">Notre histoire</a>
+            <a href="avis.html">Avis</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="actions">
+            <a href="favoris.html">
+                <i class="fa-solid fa-heart"></i>
+                <span id="favoris-count">0</span>
+            </a>
+            <a href="panier.html">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span id="panier-count">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>KEO Accessoires</h1>
+            <h2>Beauté, foi et élégance aux bouts des doigts.</h2>
+            <p>Découvrez une collection de bijoux pensée pour révéler votre élégance et accompagner chaque moment de votre vie.</p>
+            <div class="hero-buttons">
+                <a href="boutique.html" class="btn">Découvrir la collection</a>
+                <a href="contact.html" class="btn-outline">Nous contacter</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="images/collection.jpg" alt="Collection KEO Accessoires">
+        </div>
+    </section>
+
+    <!-- VALEURS -->
+    <section class="values">
+        <h2>Pourquoi choisir KEO ?</h2>
+        <div class="value-container">
+            <div class="card">
+                <i class="fa-solid fa-gem"></i>
+                <h3>Qualité</h3>
+                <p>Des accessoires sélectionnés avec soin.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-star"></i>
+                <h3>Élégance</h3>
+                <p>Des créations adaptées à votre style.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-heart"></i>
+                <h3>Foi</h3>
+                <p>Une marque inspirée par des valeurs fortes.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-truck"></i>
+                <h3>Livraison</h3>
+                <p>Recevez vos commandes facilement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUITS (Injectés dynamiquement via Supabase) -->
+    <section class="products">
+        <h2>Nos nouveautés</h2>
+        <div class="product-container" id="products-list">
+            <!-- Les produits Supabase seront générés ici -->
+        </div>
+    </section>
+
+    <!-- AVIS -->
+    <section class="reviews">
+        <h2>Avis de nos clientes</h2>
+        <div class="review-container" id="reviews-list">
+            <div class="review">
+                <p>"Sublimes créations, le collier est de très bonne qualité !"</p>
+                <br>
+                <strong>- Marie K.</strong>
+            </div>
+            <div class="review">
+                <p>"Livraison rapide à Brazzaville et bijoux très élégants."</p>
+                <br>
+                <strong>- Grâce L.</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASSISTANT IA -->
+    <button class="ai-button">🤖</button>
+    <div class="ai-box">
+        <h3>KEO Assistant</h3>
+        <p>Bonjour 👋 Quel style recherchez-vous ?</p>
+        <button>Élégant</button>
+        <button>Mariage</button>
+        <button>Cadeau</button>
+    </div>
+
+    <!-- WHATSAPP -->
+    <a class="whatsapp" href="https://wa.me/242000000000" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>KEO Accessoires</h3>
+        <p>Beauté, foi et élégance aux bouts des doigts.</p>
+        <div>
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">WhatsApp</a>
+        </div>
+        <p>© 2026 KEO Accessoires</p>
+    </footer>
+
+    <!-- SCRIPT JAVASCRIPT ES MODULE -->
+    <script type="module">
+        import { getProduits, ajouterFavori, ajouterAuPanier } from "./js/supabase.js";
+
+        document.addEventListener("DOMContentLoaded", async function() {
+
+            /* Récupération et rendu dynamique des produits */
+            const productsListContainer = document.getElementById("products-list");
+            
+            try {
+                const produits = await getProduits();
+                console.log("Produits reçus :", produits);
+
+                if (produits && produits.length > 0) {
+                    const derniersProduits = produits.slice(0, 6);
+
+                    productsListContainer.innerHTML = derniersProduits.map(prod => {
+                        const imageSrc = prod.image || prod.image_url || 'images/default.jpg';
+                        const nomProduit = prod.nom || 'Bijou KEO';
+                        const prixProduit = prod.prix ? prod.prix.toLocaleString() + ' FCFA' : '';
+
+                        return `
+                            <div class="product-card">
+                                <img src="${imageSrc}" alt="${nomProduit}">
+                                <h3>${nomProduit}</h3>
+                                <p class="price">${prixProduit}</p>
+                                <div class="card-actions">
+                                    <button class="btn-fav" data-id="${prod.id}">❤️</button>
+                                    <button class="btn-add-cart" data-id="${prod.id}">Ajouter au panier</button>
+                                </div>
+                            </div>
+                        `;
+                    }).join("");
+
+                    // Gestion des clics Panier & Favoris
+                    derniersProduits.forEach(prod => {
+                        const card = Array.from(productsListContainer.children).find(
+                            el => el.querySelector('.btn-add-cart')?.dataset.id == prod.id
+                        );
+
+                        if (card) {
+                            card.querySelector('.btn-add-cart').addEventListener('click', () => {
+                                ajouterAuPanier(prod);
+                                majCompteurs();
+                                alert(`${prod.nom} ajouté au panier ! 🛒`);
+                            });
+
+                            card.querySelector('.btn-fav').addEventListener('click', () => {
+                                ajouterFavori(prod);
+                                majCompteurs();
+                                alert(`${prod.nom} ajouté aux favoris ! ❤️`);
+                            });
+                        }
+                    });
+
+                } else {
+                    productsListContainer.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>Aucun bijou disponible pour le moment.</p>";
+                }
+            } catch (error) {
+                console.error("Erreur lors de la récupération des produits :", error);
+                if (productsListContainer) {
+                    productsListContainer.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>Impossible de charger les bijoux actuellement.</p>";
+                }
+            }
+
+            /* Mise à jour des badges Panier et Favoris */
+            function majCompteurs() {
+                let favoris = JSON.parse(localStorage.getItem("keo_favoris")) || [];
+                const favorisCount = document.getElementById("favoris-count");
+                if (favorisCount) favorisCount.textContent = favoris.length;
+
+                let panier = JSON.parse(localStorage.getItem("keo_panier")) || [];
+                const panierCount = document.getElementById("panier-count");
+                if (panierCount) panierCount.textContent = panier.length;
+            }
+
+            majCompteurs();
+
+            /* Assistant IA KEO */
+            const aiButton = document.querySelector(".ai-button");
+            const aiBox = document.querySelector(".ai-box");
+
+            if (aiButton && aiBox) {
+                aiButton.addEventListener("click", () => {
+                    aiBox.style.display = (aiBox.style.display === "block") ? "none" : "block";
+                });
+            }
+
+            const aiChoices = document.querySelectorAll(".ai-box button");
+            aiChoices.forEach(button => {
+                button.addEventListener("click", () => {
+                    let style = button.textContent.trim();
+                    let message = "";
+
+                    switch(style) {
+                        case "Élégant":
+                            message = "Je vous conseille un collier fin doré et une bague élégante pour un style raffiné ✨";
+                            break;
+                        case "Mariage":
+                            message = "Pour un mariage, choisissez une parure lumineuse avec des détails précieux 💎";
+                            break;
+                        case "Cadeau":
+                            message = "Un bracelet personnalisé ou une bague symbolique serait un magnifique cadeau 🎁";
+                            break;
+                        default:
+                            message = "Découvrez notre collection KEO Accessoires 🤍";
+                    }
+                    alert(message);
+                });
+            });
+
+            /* Animation au Scroll */
+            const elements = document.querySelectorAll(".card, .product-card, .review");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            elements.forEach(element => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(40px)";
+                element.style.transition = "0.6s";
+                observer.observe(element);
+            });
+
+            /* Smooth Scroll */
+            document.querySelectorAll("a[href^='#']").forEach(link => {
+                link.addEventListener("click", function(e) {
+                    const targetId = this.getAttribute("href");
+                    if (targetId !== '#') {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
